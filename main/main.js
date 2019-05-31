@@ -1,6 +1,6 @@
 module.exports = function main(inputs) {
 
-    let {TargetDis, WaitTime} = inputs;
+    let {distance, parkTime} = inputs;
     
     //起步价是两公里以内6块
     let baseDis = 2;
@@ -14,13 +14,13 @@ module.exports = function main(inputs) {
     let exceedDis = 8;
     let exceedCost = BaseCost * 0.5;
 	
-    return Math.round(AllCost(TargetDis, WaitTime));
+    return Math.round(AllCost(distance, parkTime));
 
-    function AllCost(TargetDis, WaitTime) { //里程费
+    function AllCost(targetDis, waitTime) { //里程费
     	return (baseCost +  // 起步价
-    	Math.max(0, TargetDis - baseDis) * BaseCost +  // 基础价
-    	Math.max(0, TargetDis - exceedDis) * exceedCost +  // 8公里后每公里+50%
-    	WaitTime * WaitCostPerMin);
+    	Math.max(0, targetDis - baseDis) * BaseCost +  // 基础价
+    	Math.max(0, targetDis - exceedDis) * exceedCost +  // 8公里后每公里+50%
+    	waitTime * WaitCostPerMin);
     }
 
 };
